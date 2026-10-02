@@ -1,7 +1,6 @@
-# THE SOUL VASTRA &bull; SECURE MANAGEABLE E-COMMERCE PLATFORM
+# THE SOUL VASTRA &bull; LUXURY STREETWEAR E-COMMERCE
 
-> **Premium Japanese-Inspired Streetwear Platform with Production-Grade Backend & Owner Administration**  
-> Blending samurai discipline, warrior philosophy, and high-end editorial streetwear with strict database-level security and a private Owner Management Portal.
+> **Official repository for The Soul Vastra e-commerce website.** Built using **Modern HTML5, Modular CSS3, Vanilla ES6+ JavaScript, Python ASGI (Starlette), and SQLite WAL / Supabase PostgreSQL** to provide a seamless, high-performance online apparel shopping experience with private owner administration.
 
 ---
 

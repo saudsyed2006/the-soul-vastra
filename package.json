@@ -2,7 +2,7 @@
   "name": "the-soul-vastra",
   "version": "1.0.0",
   "private": true,
-  "description": "THE SOUL VASTRA - Luxury Japanese-Inspired Fashion E-Commerce Platform",
+  "description": "Official repository for The Soul Vastra e-commerce website. Built using Modern HTML5/CSS3, Modular JavaScript, Python ASGI, and SQLite/PostgreSQL to provide a seamless online apparel shopping experience.",
   "main": "index.html",
   "scripts": {
     "dev": "python -m backend.server",
