@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE SOUL VASTRA &bull; Owner Dashboard</title>
+  <link rel="icon" type="image/png" href="/assets/images/katana-sliced-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/admin-static/admin.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <img src="/assets/images/katana-sliced-logo.png" alt="Logo" class="sidebar-logo" />
+        <span class="sidebar-brand-text">THE SOUL VASTRA</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item active" data-tab="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>DASHBOARD</span>
+        </a>
+        <a class="nav-item" data-tab="products">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span>PRODUCTS</span>
+        </a>
+        <a class="nav-item" data-tab="collections">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>COLLECTIONS</span>
+        </a>
+        <a class="nav-item" data-tab="homepage">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>HOMEPAGE</span>
+        </a>
+        <a class="nav-item" data-tab="media">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          <span>MEDIA</span>
+        </a>
+        <a class="nav-item" data-tab="audit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>AUDIT LOGS</span>
+        </a>
+        <a class="nav-item" data-tab="settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>SETTINGS</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="owner-pill">
+          <div>
+            <div id="ownerEmailDisplay" style="color: #ffffff; font-weight: 600;">owner@thesoulvastra.com</div>
+            <div style="font-size: 0.68rem; color: var(--text-dim);">Authenticated Server Session</div>
+          </div>
+          <span class="owner-badge">OWNER</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-toggle" id="menuToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <h2 class="page-title" id="pageTitleHeading">DASHBOARD</h2>
+        </div>
+
+        <div class="topbar-right">
+          <a href="/" target="_blank" class="btn-view-store">
+            <span>VIEW PUBLIC STORE</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button type="button" class="btn-logout" id="logoutBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>LOG OUT</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Global Notifications -->
+      <div id="adminToast" class="alert-box success" style="position: fixed; top: 85px; right: 2rem; z-index: 999; display: none; box-shadow: 0 10px 25px rgba(0,0,0,0.8);"></div>
+
+      <!-- Dynamic Views Container -->
+      <div class="page-container">
+
+        <!-- 1. DASHBOARD VIEW -->
+        <section id="view-dashboard" class="admin-tab-view">
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">TOTAL PRODUCTS</div>
+              <div class="metric-val" id="metricTotalProducts">--</div>
+              <div class="metric-sub">Complete catalogue count</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">ACTIVE / PUBLISHED</div>
+              <div class="metric-val" id="metricActiveProducts" style="color: #4ade80;">--</div>
+              <div class="metric-sub">Visible to customers</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">OUT OF STOCK</div>
+              <div class="metric-val" id="metricOutOfStock" style="color: #ff858d;">--</div>
+              <div class="metric-sub">Requires restock</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">COLLECTIONS</div>
+              <div class="metric-val" id="metricCollections">--</div>
+              <div class="metric-sub">Active drops & lines</div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+            <h3 style="font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 0.1em; color: #ffffff;">RECENTLY UPDATED / AUDIT TRAIL</h3>
+            <button type="button" class="btn-secondary-action" onclick="window.switchTab('audit')">View Full Audit Log &rarr;</button>
+          </div>
+
+          <div class="table-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>TIMESTAMP</th>
+                  <th>ACTION</th>
+                  <th>OBJECT</th>
+                  <th>USER</th>
+                  <th>DETAILS</th>
+                </tr>
+              </thead>
+              <tbody id="dashboardRecentLogsBody">
+                <tr><td colspan="5" style="text-align: center; color: var(--text-dim);">Loading audit logs...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 2. PRODUCTS VIEW -->
+        <section id="view-products" class="admin-tab-view" style="display: none;">
+          <div class="action-bar">
+            <div class="search-filters">
+              <div class="search-input-wrapper">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="prodSearchInput" class="form-input" placeholder="Search by product name, category, or tag..." />
+              </div>
+              <select id="prodCategoryFilter" class="filter-select">
+                <option value="ALL">All Categories</option>
+                <option value="OVERSIZED">Oversized T-Shirts</option>
+                <option value="ROUND NECK">Round Neck T-Shirts</option>
+              </select>
+            </div>
+            <button type="button" class="btn-primary-action" id="openAddProductModal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>ADD PRODUCT</span>
+            </button>
+          </div>
+
+          <div class="table-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>IMAGE</th>
+                  <th>PRODUCT NAME</th>
+                  <th>CATEGORY</th>
+                  <th>COLLECTION</th>
+                  <th>PRICE</th>
+                  <th>SALE PRICE</th>
+                  <th>STOCK</th>
+                  <th>STATUS</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <tr><td colspan="9" style="text-align: center; color: var(--text-dim); padding: 2rem;">Loading products from secure database...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 3. COLLECTIONS VIEW -->
+        <section id="view-collections" class="admin-tab-view" style="display: none;">
+          <div class="action-bar">
+            <div>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">Manage signature drops, collection photography, and catalog associations.</p>
+            </div>
+            <button type="button" class="btn-primary-action" id="openAddCollectionModal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>CREATE COLLECTION</span>
+            </button>
+          </div>
+
+          <div id="collectionsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+            <!-- Hydrated dynamically -->
+          </div>
+        </section>
+
+        <!-- 4. HOMEPAGE CONTENT VIEW -->
+        <section id="view-homepage" class="admin-tab-view" style="display: none;">
+          <form id="homepageForm">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+              <div>
+                <h3 style="font-family: var(--font-serif); font-size: 1.2rem; color: #ffffff;">HOMEPAGE EDITORIAL COPY &amp; ASSETS</h3>
+                <p style="color: var(--text-muted); font-size: 0.82rem;">Update hero headlines, brand story copy, and quality pillars dynamically.</p>
+              </div>
+              <button type="submit" class="btn-primary-action">SAVE ALL CHANGES</button>
+            </div>
+
+            <!-- Hero Section Block -->
+            <div class="login-card" style="margin-bottom: 2rem; max-width: 100%;">
+              <h4 style="font-family: var(--font-serif); color: var(--crimson-bright); margin-bottom: 1.2rem; letter-spacing: 0.1em;">1. HERO LANDING CONTENT</h4>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+                <div class="form-group">
+                  <label class="form-label">HERO EYEBROW</label>
+                  <input type="text" id="hp_hero_eyebrow" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">TITLE LINE 1</label>
+                  <input type="text" id="hp_hero_title1" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">TITLE LINE 2</label>
+                  <input type="text" id="hp_hero_title2" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">TITLE ACCENT LINE 3</label>
+                  <input type="text" id="hp_hero_title3" class="form-input" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">HERO SUBTITLE</label>
+                <textarea id="hp_hero_subtitle" class="form-textarea" rows="2"></textarea>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+                <div class="form-group">
+                  <label class="form-label">PRIMARY CTA TEXT</label>
+                  <input type="text" id="hp_hero_cta1" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">SECONDARY CTA TEXT</label>
+                  <input type="text" id="hp_hero_cta2" class="form-input" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Brand Story Block -->
+            <div class="login-card" style="margin-bottom: 2rem; max-width: 100%;">
+              <h4 style="font-family: var(--font-serif); color: var(--crimson-bright); margin-bottom: 1.2rem; letter-spacing: 0.1em;">2. BRAND STORY EDITORIAL</h4>
+              <div class="form-group">
+                <label class="form-label">STORY HEADING</label>
+                <input type="text" id="hp_story_heading" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">PARAGRAPH 1</label>
+                <textarea id="hp_story_p1" class="form-textarea" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">PARAGRAPH 2</label>
+                <textarea id="hp_story_p2" class="form-textarea" rows="2"></textarea>
+              </div>
+            </div>
+
+            <!-- Brand Philosophy Block -->
+            <div class="login-card" style="margin-bottom: 2rem; max-width: 100%;">
+              <h4 style="font-family: var(--font-serif); color: var(--crimson-bright); margin-bottom: 1.2rem; letter-spacing: 0.1em;">3. PHILOSOPHY SECTION</h4>
+              <div class="form-group">
+                <label class="form-label">PHILOSOPHY STATEMENT</label>
+                <input type="text" id="hp_philo_heading" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">PHILOSOPHY COPY</label>
+                <textarea id="hp_philo_p1" class="form-textarea" rows="3"></textarea>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <!-- 5. MEDIA LIBRARY VIEW -->
+        <section id="view-media" class="admin-tab-view" style="display: none;">
+          <div class="login-card" style="max-width: 100%; margin-bottom: 2rem;">
+            <div class="image-upload-box" id="mediaUploadBox">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--crimson);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <h4 style="font-family: var(--font-serif); margin: 0.8rem 0 0.3rem;">UPLOAD PRODUCT OR EDITORIAL IMAGE</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Click to browse or drag &amp; drop high-res image (JPEG, PNG, WEBP &bull; Max 10MB)</p>
+              <input type="file" id="mediaFileInput" accept="image/*" style="display: none;" />
+            </div>
+          </div>
+
+          <h4 style="font-family: var(--font-serif); letter-spacing: 0.1em; color: #ffffff; margin-bottom: 1.2rem;">MEDIA REPOSITORY</h4>
+          <div id="mediaGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.2rem;">
+            <!-- Hydrated dynamically -->
+          </div>
+        </section>
+
+        <!-- 6. AUDIT LOGS VIEW -->
+        <section id="view-audit" class="admin-tab-view" style="display: none;">
+          <div class="table-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>TIMESTAMP (UTC)</th>
+                  <th>ACTION</th>
+                  <th>OBJECT TYPE</th>
+                  <th>OBJECT ID</th>
+                  <th>USER</th>
+                  <th>MUTATION DETAILS</th>
+                  <th>IP</th>
+                </tr>
+              </thead>
+              <tbody id="auditLogsFullBody">
+                <tr><td colspan="8" style="text-align: center; color: var(--text-dim); padding: 2rem;">Loading audit trail...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 7. SETTINGS VIEW -->
+        <section id="view-settings" class="admin-tab-view" style="display: none;">
+          <div class="login-card" style="max-width: 520px;">
+            <h3 style="font-family: var(--font-serif); color: #ffffff; margin-bottom: 1.5rem; letter-spacing: 0.1em;">CHANGE OWNER PASSWORD</h3>
+            <div id="pwdAlert" class="alert-box" style="display: none;"></div>
+            <form id="changePasswordForm">
+              <div class="form-group">
+                <label class="form-label">CURRENT PASSWORD</label>
+                <input type="password" id="curPassword" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">NEW PASSWORD (MIN 8 CHARS)</label>
+                <input type="password" id="newPassword" class="form-input" required minlength="8" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">CONFIRM NEW PASSWORD</label>
+                <input type="password" id="confirmNewPassword" class="form-input" required minlength="8" />
+              </div>
+              <button type="submit" class="btn-primary-action" style="width: 100%; justify-content: center; margin-top: 1rem;">UPDATE SECURE PASSWORD</button>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- PRODUCT EDITOR MODAL -->
+  <div class="modal-backdrop" id="productModal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="productModalTitle">EDIT PRODUCT</h3>
+        <button type="button" class="modal-close" id="closeProductModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="productEditForm">
+          <input type="hidden" id="p_id" />
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.2rem;">
+            <div class="form-group">
+              <label class="form-label">PRODUCT NAME *</label>
+              <input type="text" id="p_name" class="form-input" placeholder="e.g. ECLIPSE HEAVYWEIGHT TEE" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">SLUG *</label>
+              <input type="text" id="p_slug" class="form-input" placeholder="eclipse-heavyweight-tee" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">SUBTITLE / DROP TAGLINE</label>
+            <input type="text" id="p_subtitle" class="form-input" placeholder="e.g. FORGED IN MIDNIGHT SHADES" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+            <div class="form-group">
+              <label class="form-label">CATEGORY *</label>
+              <select id="p_category" class="form-select" required>
+                <option value="OVERSIZED">OVERSIZED</option>
+                <option value="ROUND NECK">ROUND NECK</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">COLLECTION *</label>
+              <select id="p_collection" class="form-select" required>
+                <option value="ECLIPSE">ECLIPSE</option>
+                <option value="CRIMSON">CRIMSON</option>
+                <option value="SHADOW">SHADOW</option>
+                <option value="RONIN">RONIN</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- PRICING ROW (CRITICAL) -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; background: rgba(200, 27, 36, 0.08); padding: 1rem; border-radius: 4px; border: 1px solid rgba(200, 27, 36, 0.25); margin-bottom: 1.4rem;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" style="color: var(--crimson-bright);">ACTIVE PRICE (₹) *</label>
+              <input type="number" id="p_price" class="form-input" step="1" min="0" placeholder="1999" required style="font-weight: 700; font-size: 1.05rem;" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">ORIGINAL / STRIKE (₹)</label>
+              <input type="number" id="p_original_price" class="form-input" step="1" min="0" placeholder="2499" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">STOCK QUANTITY</label>
+              <input type="number" id="p_stock" class="form-input" step="1" min="0" placeholder="50" required />
+            </div>
+          </div>
+
+          <!-- IMAGE SECTION -->
+          <div class="form-group">
+            <label class="form-label">PRIMARY PRODUCT IMAGE</label>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <input type="text" id="p_image" class="form-input" placeholder="assets/images/... or /uploads/..." required />
+              <button type="button" class="btn-secondary-action" id="triggerProdImageUpload">Upload New</button>
+              <input type="file" id="prodImageFileInput" accept="image/*" style="display: none;" />
+            </div>
+            <div class="image-preview-row" id="p_image_preview_box" style="margin-top: 0.8rem;">
+              <img id="p_image_preview" src="/assets/images/hero-street-samurai.jpg" alt="Preview" />
+              <span style="font-size: 0.75rem; color: var(--text-dim);">Live garment image preview</span>
+            </div>
+          </div>
+
+          <!-- SIZES & STATUS -->
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.2rem;">
+            <div class="form-group">
+              <label class="form-label">AVAILABLE SIZES</label>
+              <div style="display: flex; gap: 0.8rem; margin-top: 0.4rem;" id="sizesCheckboxes">
+                <label style="font-size: 0.8rem; color: #ffffff;"><input type="checkbox" value="S" checked /> S</label>
+                <label style="font-size: 0.8rem; color: #ffffff;"><input type="checkbox" value="M" checked /> M</label>
+                <label style="font-size: 0.8rem; color: #ffffff;"><input type="checkbox" value="L" checked /> L</label>
+                <label style="font-size: 0.8rem; color: #ffffff;"><input type="checkbox" value="XL" checked /> XL</label>
+                <label style="font-size: 0.8rem; color: #ffffff;"><input type="checkbox" value="XXL" checked /> XXL</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CATALOGUE STATUS</label>
+              <select id="p_status" class="form-select">
+                <option value="1">Active / Published</option>
+                <option value="0">Draft / Inactive</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- DETAILS & DESCRIPTIONS -->
+          <div class="form-group">
+            <label class="form-label">PRODUCT DESCRIPTION</label>
+            <textarea id="p_description" class="form-textarea" rows="2" placeholder="Crafted for those who rise in silence..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">WARRIOR STORY / ESSENCE</label>
+            <textarea id="p_story" class="form-textarea" rows="2" placeholder="Forged in midnight shades..."></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+            <div class="form-group">
+              <label class="form-label">FABRIC SPECIFICATION</label>
+              <input type="text" id="p_fabric" class="form-input" placeholder="280 GSM 100% Combed Terry Cotton" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">FIT PROFILE</label>
+              <input type="text" id="p_fit" class="form-input" placeholder="Signature Boxy Oversized Streetwear Fit" />
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+            <label style="font-size: 0.8rem; color: #ffffff; display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" id="p_featured" />
+              <span>Highlight as Featured on Homepage</span>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary-action" id="cancelProductBtn">CANCEL</button>
+        <button type="button" class="btn-primary-action" id="saveProductBtn">SAVE PRODUCT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLLECTION MODAL -->
+  <div class="modal-backdrop" id="collectionModal" style="display: none;">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="colModalTitle">EDIT COLLECTION</h3>
+        <button type="button" class="modal-close" id="closeColModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="colForm">
+          <input type="hidden" id="col_id" />
+          <div class="form-group">
+            <label class="form-label">COLLECTION NAME *</label>
+            <input type="text" id="col_name" class="form-input" placeholder="e.g. SHADOW" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">SUBTITLE / BADGE</label>
+            <input type="text" id="col_subtitle" class="form-input" placeholder="e.g. BLACK DYE DROP" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">DESCRIPTION</label>
+            <textarea id="col_description" class="form-textarea" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">COVER IMAGE PATH OR URL</label>
+            <input type="text" id="col_image" class="form-input" placeholder="assets/images/collection-shadow.jpg" required />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary-action" id="cancelColBtn">CANCEL</button>
+        <button type="button" class="btn-primary-action" id="saveColBtn">SAVE COLLECTION</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin-static/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>THE SOUL VASTRA &bull; Premium Japanese-Inspired Streetwear</title>
+  <meta name="description" content="THE SOUL VASTRA combines samurai philosophy, discipline, strength, and individuality with luxury modern streetwear. Wear your legacy." />
+  
+  <!-- Favicon / Meta -->
+  <link rel="icon" type="image/png" href="assets/images/katana-sliced-logo.png" />
+  <meta name="theme-color" content="#050505" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+
+  <!-- Subtle Film Grain Overlay -->
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <!-- ==================================================
+       HEADER / NAVIGATION
+       ================================================== -->
+  <header class="header" id="mainHeader">
+    <div class="nav-container">
+      <!-- Left: Brand Logo -->
+      <a href="#hero" class="nav-brand">
+        THE SOUL VASTRA
+      </a>
+
+      <!-- Center: Navigation Menu -->
+      <ul class="nav-center-menu">
+        <li><a href="#hero" class="nav-link">HOME</a></li>
+        <li><a href="#shop" class="nav-link">SHOP</a></li>
+        <li><a href="#categories" class="nav-link">OVERSIZED</a></li>
+        <li><a href="#categories" class="nav-link">ROUND NECK</a></li>
+        <li><a href="#story" class="nav-link">ABOUT</a></li>
+        <li><a href="#footer" class="nav-link">CONTACT</a></li>
+      </ul>
+
+      <!-- Right: Action Icons (Search, Cart, Hamburger) -->
+      <div class="nav-actions">
+        <!-- Cart Toggle Button -->
+        <button type="button" class="nav-action-btn cart-toggle-btn" aria-label="Shopping Bag">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-counter">0</span>
+        </button>
+
+        <!-- Mobile Menu Hamburger -->
+        <button type="button" class="hamburger-btn" id="mobileMenuToggle" aria-label="Open Navigation Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Fullscreen Navigation Menu Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <ul class="mobile-nav-menu">
+      <li><a href="#hero" class="mobile-nav-link">HOME</a></li>
+      <li><a href="#shop" class="mobile-nav-link">SHOP</a></li>
+      <li><a href="#categories" class="mobile-nav-link">OVERSIZED</a></li>
+      <li><a href="#categories" class="mobile-nav-link">ROUND NECK</a></li>
+      <li><a href="#story" class="mobile-nav-link">ABOUT</a></li>
+      <li><a href="#footer" class="mobile-nav-link">CONTACT</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <p>THE SOUL VASTRA &bull; WEAR YOUR LEGACY</p>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==================================================
+         4. HERO SECTION (100vh Cinematic Landing)
+         ================================================== -->
+    <section class="hero" id="hero">
+      <!-- Atmospheric Crimson Canvas Particles Engine -->
+      <canvas id="heroCanvas" class="hero-canvas"></canvas>
+
+      <!-- Dominant Samurai Art Layer -->
+      <div class="hero-art-layer">
+        <img src="assets/images/hero-samurai-clean.jpg" alt="Samurai warrior silhouette with blood red moon and katana" loading="eager" />
+      </div>
+
+      <div class="hero-container">
+        <div class="hero-content">
+          <!-- Hero Eyebrow in English -->
+          <div class="eyebrow hero-eyebrow">
+            <span class="eyebrow-text">WEAR YOUR LEGACY.</span>
+          </div>
+
+          <!-- Main High-Contrast Luxury Heading -->
+          <h1 class="hero-title">
+            <span>WEAR</span>
+            <span>YOUR</span>
+            <span class="hero-title-accent">LEGACY.</span>
+          </h1>
+
+          <!-- Supporting Text -->
+          <p class="hero-subtitle">
+            Premium streetwear inspired by discipline, strength and individuality.
+          </p>
+
+          <!-- Dual CTA Buttons -->
+          <div class="hero-cta-group">
+            <a href="#shop" class="btn btn-primary" onclick="window.filterShopCategory('OVERSIZED')">
+              SHOP OVERSIZED
+            </a>
+            <a href="#shop" class="btn btn-secondary" onclick="window.filterShopCategory('ROUND NECK')">
+              SHOP ROUND NECK
+            </a>
+          </div>
+
+          <!-- Bottom Left Scroll Indicator -->
+          <div class="hero-scroll-indicator" id="scrollIndicator">
+            <div class="mouse-scroll-icon" style="width: 16px; height: 26px;">
+              <span class="mouse-wheel" style="width: 2.5px; height: 5px;"></span>
+            </div>
+            <span>SCROLL TO EXPLORE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         5. CINEMATIC INTRO / TRANSITION SECTION
+         ================================================== -->
+    <section class="intro-section" id="introSection">
+      <div class="intro-content">
+        <div class="intro-quote-line-1">NOT EVERY SOUL IS WORN.</div>
+        <div class="intro-quote-line-2">SOME ARE FORGED.</div>
+        <div class="intro-katana-visual">
+          <img src="assets/images/intro-katana.png" alt="Forged Samurai Katana Blade" loading="lazy" />
+        </div>
+        <a href="#collections" class="intro-enter-btn" id="enterSiteBtn">
+          <span>SCROLL TO ENTER</span>
+          <div class="mouse-scroll-icon">
+            <span class="mouse-wheel"></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         6. COLLECTION SECTION
+         ================================================== -->
+    <section class="collections-section" id="collections">
+      <div class="container">
+        <div class="section-header-row reveal-on-scroll">
+          <div>
+            <div class="eyebrow">OUR COLLECTIONS</div>
+            <h2 class="section-title">EACH DROP. A NEW LEGACY.</h2>
+          </div>
+          <a href="#shop" class="btn-link">
+            <span>VIEW ALL COLLECTIONS</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <div class="collections-grid">
+          <!-- Card 1: SHADOW -->
+          <div class="collection-card reveal-on-scroll" onclick="window.filterShopCollection('SHADOW')">
+            <div class="collection-image-wrap">
+              <img src="assets/images/collection-shadow.jpg" alt="SHADOW Collection Oversized Streetwear" loading="lazy" />
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info">
+              <div>
+                <h3 class="collection-title">SHADOW</h3>
+                <div class="collection-label">COLLECTION</div>
+              </div>
+              <span class="collection-view-btn">VIEW COLLECTION</span>
+            </div>
+          </div>
+
+          <!-- Card 2: RONIN -->
+          <div class="collection-card reveal-on-scroll" onclick="window.filterShopCollection('RONIN')">
+            <div class="collection-image-wrap">
+              <img src="assets/images/collection-ronin.jpg" alt="RONIN Collection Oversized Streetwear" loading="lazy" />
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info">
+              <div>
+                <h3 class="collection-title">RONIN</h3>
+                <div class="collection-label">COLLECTION</div>
+              </div>
+              <span class="collection-view-btn">VIEW COLLECTION</span>
+            </div>
+          </div>
+
+          <!-- Card 3: ECLIPSE -->
+          <div class="collection-card reveal-on-scroll" onclick="window.filterShopCollection('ECLIPSE')">
+            <div class="collection-image-wrap">
+              <img src="assets/images/collection-eclipse.jpg" alt="ECLIPSE Collection Oversized Streetwear" loading="lazy" />
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info">
+              <div>
+                <h3 class="collection-title">ECLIPSE</h3>
+                <div class="collection-label">COLLECTION</div>
+              </div>
+              <span class="collection-view-btn">VIEW COLLECTION</span>
+            </div>
+          </div>
+
+          <!-- Card 4: CRIMSON -->
+          <div class="collection-card reveal-on-scroll" onclick="window.filterShopCollection('CRIMSON')">
+            <div class="collection-image-wrap">
+              <img src="assets/images/collection-crimson.jpg" alt="CRIMSON Collection Oversized Streetwear" loading="lazy" />
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info">
+              <div>
+                <h3 class="collection-title">CRIMSON</h3>
+                <div class="collection-label">COLLECTION</div>
+              </div>
+              <span class="collection-view-btn">VIEW COLLECTION</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         7. PRODUCT SHOWCASE (DAWN OF DISCIPLINE)
+         ================================================== -->
+    <section class="showcase-section" id="showcase">
+      <div class="container">
+        <div class="showcase-grid reveal-on-scroll">
+          <!-- Thumbnail Image Gallery -->
+          <div class="showcase-thumbs">
+            <div class="showcase-thumb active" data-src="assets/images/product-dawn-discipline-main.jpg">
+              <img src="assets/images/product-dawn-discipline-main.jpg" alt="Dawn of Discipline Back View" />
+            </div>
+            <div class="showcase-thumb" data-src="assets/images/product-dawn-detail.jpg">
+              <img src="assets/images/product-dawn-detail.jpg" alt="Dawn of Discipline Graphic Print Close-up" />
+            </div>
+            <div class="showcase-thumb" data-src="assets/images/product-dawn-model.jpg">
+              <img src="assets/images/product-dawn-model.jpg" alt="Dawn of Discipline Model Fit View" />
+            </div>
+            <div class="showcase-thumb" data-src="assets/images/product-dawn-alt.jpg">
+              <img src="assets/images/product-dawn-alt.jpg" alt="Ronin Drop Alternate View" />
+            </div>
+          </div>
+
+          <!-- Large Interactive Main Visual with Zoom -->
+          <div class="showcase-main-visual">
+            <div class="showcase-img-wrap">
+              <img id="showcaseMainImg" src="assets/images/product-dawn-discipline-main.jpg" alt="Dawn of Discipline Oversized Streetwear Tee" />
+            </div>
+            <div class="showcase-zoom-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+              <span>HOVER TO ZOOM</span>
+            </div>
+          </div>
+
+          <!-- Product Details & Options -->
+          <div class="showcase-details">
+            <div class="showcase-category-tag">ECLIPSE OVERSIZED TEE</div>
+            <h2 class="showcase-product-title">DAWN OF DISCIPLINE</h2>
+            
+            <div class="showcase-price-row">
+              <span class="showcase-price">₹1,999.00</span>
+              <span class="showcase-orig-price">₹2,499.00</span>
+            </div>
+
+            <p class="showcase-desc">
+              Crafted for those who rise in silence. Premium heavyweight cotton. Oversized fit. Built to last.
+            </p>
+
+            <!-- Size Selection -->
+            <div class="showcase-option-group">
+              <div class="showcase-option-label">
+                <span>SIZE</span>
+                <span class="showcase-size-guide-btn trigger-size-guide">SIZE GUIDE</span>
+              </div>
+              <div class="showcase-sizes">
+                <button type="button" class="showcase-size-btn" data-size="S">S</button>
+                <button type="button" class="showcase-size-btn active" data-size="M">M</button>
+                <button type="button" class="showcase-size-btn" data-size="L">L</button>
+                <button type="button" class="showcase-size-btn" data-size="XL">XL</button>
+                <button type="button" class="showcase-size-btn" data-size="XXL">XXL</button>
+              </div>
+            </div>
+
+            <!-- Quantity & Add To Cart Button -->
+            <div class="showcase-action-row">
+              <div class="showcase-qty-control">
+                <button type="button" class="qty-btn" id="showcaseQtyMinus" aria-label="Decrease quantity">-</button>
+                <span class="qty-val" id="showcaseQtyVal">1</span>
+                <button type="button" class="qty-btn" id="showcaseQtyPlus" aria-label="Increase quantity">+</button>
+              </div>
+              <button type="button" class="btn btn-primary showcase-add-btn" id="showcaseAddToCart">
+                ADD TO CART
+              </button>
+            </div>
+
+            <!-- Accordion Details -->
+            <div class="showcase-accordions">
+              <!-- Item 1: Product Details -->
+              <div class="accordion-item active">
+                <button type="button" class="accordion-header">
+                  <span>&mdash; PRODUCT DETAILS</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="accordion-content">
+                  <p>280 GSM premium French Terry cotton. High-density screenprint on spine that will never fade or crack. Drop-shoulder relaxed boxy streetwear fit. Ribbed 1-inch neckband with reinforced chain stitching.</p>
+                </div>
+              </div>
+
+              <!-- Item 2: Shipping & Returns -->
+              <div class="accordion-item">
+                <button type="button" class="accordion-header">
+                  <span>&mdash; SHIPPING &amp; RETURNS</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="accordion-content">
+                  <p>Dispatched within 24 hours via Express Air Delivery across India. Free shipping on orders above ₹1,499. Hassle-free 7-day returns and exchanges if unused and with original tags intact.</p>
+                </div>
+              </div>
+
+              <!-- Item 3: Size Guide -->
+              <div class="accordion-item">
+                <button type="button" class="accordion-header trigger-size-guide">
+                  <span>&mdash; SIZE GUIDE</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="accordion-content">
+                  <p>Our Oversized fit is intentionally cut roomy with drop shoulders. For a standard relaxed streetwear drape, choose your normal size. For a fitted look, order one size down.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         9. PRODUCT CATEGORY SECTION (OUR PRODUCTS)
+         ================================================== -->
+    <section class="category-section" id="categories">
+      <div class="container">
+        <div class="section-header-row reveal-on-scroll">
+          <div>
+            <div class="eyebrow">&mdash; OUR PRODUCTS</div>
+            <h2 class="section-title">THE ARMOR YOU WEAR.</h2>
+          </div>
+        </div>
+
+        <div class="category-blocks">
+          <!-- Category Block 1: OVERSIZED T-SHIRTS -->
+          <div class="category-block reveal-on-scroll">
+            <div class="category-block-info">
+              <h3 class="category-block-title">OVERSIZED<br />T-SHIRTS</h3>
+              <p class="category-block-desc">
+                Relaxed fit. Bold look.<br />
+                Made to stand out.
+              </p>
+              <a href="#shop" class="btn-link" onclick="window.filterShopCategory('OVERSIZED')">
+                <span>EXPLORE COLLECTION</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+            <div class="category-block-visual">
+              <img src="assets/images/cat-oversized-tees.jpg" alt="Oversized T-Shirts Collection Showcase" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Category Block 2: ROUND NECK T-SHIRTS -->
+          <div class="category-block reveal-on-scroll">
+            <div class="category-block-info">
+              <h3 class="category-block-title">ROUND NECK<br />T-SHIRTS</h3>
+              <p class="category-block-desc">
+                Timeless fit. Everyday essential.<br />
+                Clean, comfortable and classic.
+              </p>
+              <a href="#shop" class="btn-link" onclick="window.filterShopCategory('ROUND NECK')">
+                <span>EXPLORE COLLECTION</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+            <div class="category-block-visual">
+              <img src="assets/images/cat-roundneck-tees.jpg" alt="Round Neck T-Shirts Collection Showcase" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         10. "ALL PRINTS. ALL STORIES." CAROUSEL
+         ================================================== -->
+    <section class="prints-section" id="prints">
+      <div class="container">
+        <div class="section-header-row reveal-on-scroll">
+          <div>
+            <div class="eyebrow">&mdash; EXPRESS YOUR SOUL</div>
+            <h2 class="section-title">ALL PRINTS. ALL STORIES.</h2>
+          </div>
+          <div class="prints-controls">
+            <a href="#shop" class="btn-link" style="margin-right: 1.5rem;">VIEW ALL</a>
+            <button type="button" class="carousel-nav-btn" id="printsPrevBtn" aria-label="Previous prints">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button type="button" class="carousel-nav-btn" id="printsNextBtn" aria-label="Next prints">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="prints-carousel-container">
+          <div class="prints-track" id="printsTrack">
+            <!-- 1. RISING -->
+            <div class="print-card" onclick="window.openQuickView('rising')">
+              <div class="print-image-wrap">
+                <img src="assets/images/model-rising.jpg" alt="RISING Oversized Streetwear Graphic Print" loading="lazy" />
+              </div>
+              <div class="print-info">
+                <h3 class="print-title">RISING</h3>
+                <div class="print-category">OVERSIZED T-SHIRT</div>
+                <div class="print-price">₹1,999.00</div>
+              </div>
+            </div>
+
+            <!-- 2. SHINIGAMI -->
+            <div class="print-card" onclick="window.openQuickView('shinigami')">
+              <div class="print-image-wrap">
+                <img src="assets/images/model-shinigami.jpg" alt="SHINIGAMI Oversized Streetwear Graphic Print" loading="lazy" />
+              </div>
+              <div class="print-info">
+                <h3 class="print-title">SHINIGAMI</h3>
+                <div class="print-category">OVERSIZED T-SHIRT</div>
+                <div class="print-price">₹2,199.00</div>
+              </div>
+            </div>
+
+            <!-- 3. DISCIPLINE -->
+            <div class="print-card" onclick="window.openQuickView('discipline')">
+              <div class="print-image-wrap">
+                <img src="assets/images/model-discipline.jpg" alt="DISCIPLINE Round Neck Graphic Print" loading="lazy" />
+              </div>
+              <div class="print-info">
+                <h3 class="print-title">DISCIPLINE</h3>
+                <div class="print-category">ROUND NECK T-SHIRT</div>
+                <div class="print-price">₹1,799.00</div>
+              </div>
+            </div>
+
+            <!-- 4. LONE WARRIOR -->
+            <div class="print-card" onclick="window.openQuickView('lone-warrior')">
+              <div class="print-image-wrap">
+                <img src="assets/images/model-lone-warrior.jpg" alt="LONE WARRIOR Oversized Graphic Print" loading="lazy" />
+              </div>
+              <div class="print-info">
+                <h3 class="print-title">LONE WARRIOR</h3>
+                <div class="print-category">OVERSIZED T-SHIRT</div>
+                <div class="print-price">₹2,099.00</div>
+              </div>
+            </div>
+
+            <!-- 5. FOCUS -->
+            <div class="print-card" onclick="window.openQuickView('focus')">
+              <div class="print-image-wrap">
+                <img src="assets/images/model-focus.jpg" alt="FOCUS Round Neck Graphic Print" loading="lazy" />
+              </div>
+              <div class="print-info">
+                <h3 class="print-title">FOCUS</h3>
+                <div class="print-category">ROUND NECK T-SHIRT</div>
+                <div class="print-price">₹1,799.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         8. PRODUCT CATALOG (SHOP SECTION)
+         ================================================== -->
+    <section class="shop-section" id="shop">
+      <div class="container">
+        <div class="section-header-row reveal-on-scroll" style="justify-content: center; text-align: center;">
+          <div>
+            <div class="eyebrow">&mdash; THE CATALOG</div>
+            <h2 class="section-title">FORGED FOR THE STREETS.</h2>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="shop-filter-bar reveal-on-scroll">
+          <button type="button" class="shop-filter-btn active" data-filter="ALL">ALL</button>
+          <button type="button" class="shop-filter-btn" data-filter="OVERSIZED">OVERSIZED</button>
+          <button type="button" class="shop-filter-btn" data-filter="ROUND NECK">ROUND NECK</button>
+          <button type="button" class="shop-filter-btn" data-filter="NEW ARRIVALS">NEW ARRIVALS</button>
+          <button type="button" class="shop-filter-btn" data-filter="BEST SELLERS">BEST SELLERS</button>
+        </div>
+
+        <!-- Dynamic Product Cards Grid -->
+        <div class="product-grid" id="shopProductGrid">
+          <!-- Rendered via JavaScript from SOUL_PRODUCTS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         11. BRAND STORY SECTION
+         ================================================== -->
+    <section class="story-section" id="story">
+      <div class="container">
+        <div class="story-grid reveal-on-scroll">
+          <div class="story-visual-wrap">
+            <img src="assets/images/story-warrior.jpg" alt="The Soul Vastra Streetwear Warrior Philosophy" loading="lazy" />
+          </div>
+
+          <div class="story-content">
+            <div class="eyebrow">&mdash; OUR STORY</div>
+            <h2 class="story-title">
+              MORE THAN CLOTHING.<br />
+              IT'S A WAY OF LIFE.
+            </h2>
+            <p class="story-text-p">
+              <strong>THE SOUL VASTRA</strong> is not just fabric. It's discipline. It's mindset. It's a reminder of who you are and who you choose to become.
+            </p>
+            <p class="story-text-p">
+              We design for the silent warriors. The ones who don't follow the path, but forge their own. Every stitch, cut, and print is rooted in bushido principles—strength, honor, and unyielding self-mastery.
+            </p>
+            <div class="story-cta">
+              <a href="#about" class="btn btn-secondary">READ OUR STORY</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         12. QUALITY SECTION (BUILT DIFFERENT)
+         ================================================== -->
+    <section class="quality-section" id="quality">
+      <div class="container">
+        <div class="quality-header reveal-on-scroll">
+          <div class="eyebrow">&mdash; BUILT DIFFERENT</div>
+          <h2 class="section-title">QUALITY YOU CAN FEEL.</h2>
+        </div>
+
+        <div class="quality-grid">
+          <!-- 1. PREMIUM COTTON -->
+          <div class="quality-item reveal-on-scroll">
+            <div class="quality-icon-wrap">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+              </svg>
+            </div>
+            <h3 class="quality-title">PREMIUM COTTON</h3>
+            <p class="quality-desc">Soft, breathable and built for all-day comfort.</p>
+          </div>
+
+          <!-- 2. HIGH QUALITY PRINTS -->
+          <div class="quality-item reveal-on-scroll">
+            <div class="quality-icon-wrap">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                <circle cx="9" cy="9" r="2"/>
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+              </svg>
+            </div>
+            <h3 class="quality-title">HIGH QUALITY PRINTS</h3>
+            <p class="quality-desc">Long lasting prints with perfect details.</p>
+          </div>
+
+          <!-- 3. PERFECT FIT -->
+          <div class="quality-item reveal-on-scroll">
+            <div class="quality-icon-wrap">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+              </svg>
+            </div>
+            <h3 class="quality-title">PERFECT FIT</h3>
+            <p class="quality-desc">Oversized or regular, your style, your fit.</p>
+          </div>
+
+          <!-- 4. MADE TO LAST -->
+          <div class="quality-item reveal-on-scroll">
+            <div class="quality-icon-wrap">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+              </svg>
+            </div>
+            <h3 class="quality-title">MADE TO LAST</h3>
+            <p class="quality-desc">Durable stitching. Stronger every time.</p>
+          </div>
+
+          <!-- 5. LIMITED DROPS -->
+          <div class="quality-item reveal-on-scroll">
+            <div class="quality-icon-wrap">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                <path d="m3.3 7 8.7 5 8.7-5"/>
+                <path d="M12 22V12"/>
+              </svg>
+            </div>
+            <h3 class="quality-title">LIMITED DROPS</h3>
+            <p class="quality-desc">We drop less, but the best.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         13. ABOUT / PHILOSOPHY SECTION
+         ================================================== -->
+    <section class="philosophy-section" id="about">
+      <div class="container">
+        <div class="philosophy-grid reveal-on-scroll">
+          <div class="philosophy-visual">
+            <img src="assets/images/philosophy-warrior.jpg" alt="Samurai Streetwear Philosophy and Individuality" loading="lazy" />
+          </div>
+
+          <div class="philosophy-content">
+            <div class="eyebrow">&mdash; OUR PHILOSOPHY</div>
+            <h2 class="philosophy-title">
+              WE DON'T FOLLOW TRENDS.<br />
+              WE CREATE IDENTITY.
+            </h2>
+            <p class="philosophy-copy">
+              <strong>THE SOUL VASTRA</strong> is not just a brand. It's a mindset. A way of life.
+            </p>
+            <p class="philosophy-copy">
+              Every print we create carries a meaning. Every piece we make represents strength, discipline and individuality.
+            </p>
+            <p class="philosophy-copy">
+              This is not for everyone. This is for those who choose to stand out.
+            </p>
+            <div style="margin-top: 2rem;">
+              <a href="#shop" class="btn btn-primary">LEARN MORE ABOUT US</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         EPIC KATANA BRAND BANNER (DIVIDER & BACK TO TOP)
+         ================================================== -->
+    <section class="katana-brand-banner">
+      <div class="container">
+        <div class="katana-logo-container reveal-on-scroll">
+          <img src="assets/images/katana-sliced-logo.png" alt="THE SOUL VASTRA Sliced Blade Emblem" loading="lazy" />
+        </div>
+        <div class="katana-banner-slogan reveal-on-scroll">
+          WEAR YOUR LEGACY.
+        </div>
+        <button type="button" class="back-to-top-btn" id="backToTopBtn">
+          <span>BACK TO TOP</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================================================
+       14. FOOTER
+       ================================================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Brand Info -->
+        <div class="footer-brand-col">
+          <div class="footer-brand-title">THE SOUL VASTRA</div>
+          <div class="footer-brand-slogan">WEAR YOUR LEGACY.</div>
+          <p class="footer-brand-desc">
+            Premium Japanese-inspired streetwear crafted with heavyweight fabrics, razor-sharp discipline, and enduring individuality.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" class="footer-social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Pinterest">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="X (Twitter)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768M14.232 9.232L20 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 1: SHOP -->
+        <div>
+          <h4 class="footer-col-title">SHOP</h4>
+          <ul class="footer-links">
+            <li><a href="#shop" class="footer-link" onclick="window.filterShopCategory('OVERSIZED')">Oversized T-Shirts</a></li>
+            <li><a href="#shop" class="footer-link" onclick="window.filterShopCategory('ROUND NECK')">Round Neck T-Shirts</a></li>
+            <li><a href="#shop" class="footer-link" onclick="window.filterShopCategory('NEW ARRIVALS')">New Arrivals</a></li>
+            <li><a href="#shop" class="footer-link" onclick="window.filterShopCategory('BEST SELLERS')">Best Sellers</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: HELP -->
+        <div>
+          <h4 class="footer-col-title">HELP</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link trigger-size-guide">Size Guide</a></li>
+            <li><a href="#showcase" class="footer-link">Shipping &amp; Returns</a></li>
+            <li><a href="#about" class="footer-link">FAQs</a></li>
+            <li><a href="#footer" class="footer-link">Track Order</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: COMPANY -->
+        <div>
+          <h4 class="footer-col-title">COMPANY</h4>
+          <ul class="footer-links">
+            <li><a href="#story" class="footer-link">About Us</a></li>
+            <li><a href="#footer" class="footer-link">Contact Us</a></li>
+            <li><a href="#about" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#about" class="footer-link">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: NEWSLETTER -->
+        <div class="footer-newsletter-col">
+          <h4 class="footer-col-title">NEWSLETTER</h4>
+          <div class="newsletter-box">
+            <p>Be the first to know about new drops and private warrior releases.</p>
+            <form class="newsletter-form" id="newsletterForm">
+              <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="Enter your email" required />
+              <button type="submit" class="newsletter-submit-btn" aria-label="Subscribe">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 THE SOUL VASTRA. ALL RIGHTS RESERVED.</div>
+        <div>DESIGNED WITH PASSION.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================================================
+       SLIDE-OUT CART DRAWER
+       ================================================== -->
+  <div class="cart-drawer-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart Drawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">YOUR BAG</div>
+      <button type="button" class="cart-drawer-close" id="cartCloseBtn" aria-label="Close Bag">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Tracker -->
+    <div class="shipping-progress-wrap">
+      <div class="shipping-progress-text" id="shippingProgressText">
+        Add <strong>₹499.00</strong> more for <strong>FREE EXPRESS SHIPPING</strong>
+      </div>
+      <div class="shipping-progress-bar-bg">
+        <div class="shipping-progress-bar-fill" id="shippingProgressBar"></div>
+      </div>
+    </div>
+
+    <!-- Cart Body -->
+    <div class="cart-drawer-body">
+      <!-- Empty State -->
+      <div class="cart-empty-state" id="cartEmptyState">
+        <div class="cart-empty-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </div>
+        <h3 class="cart-empty-title">YOUR BAG IS EMPTY</h3>
+        <p style="font-size: 0.85rem; margin-bottom: 1.5rem;">The path of discipline begins with a single choice.</p>
+        <button type="button" class="btn btn-outline-crimson" onclick="window.soulCart.closeDrawer(); location.href='#shop';">
+          EXPLORE CATALOG
+        </button>
+      </div>
+
+      <!-- Items List -->
+      <div id="cartItemsList"></div>
+    </div>
+
+    <!-- Cart Footer -->
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="cart-subtotal-row">
+        <span class="cart-subtotal-label">SUBTOTAL</span>
+        <span class="cart-subtotal-amount" id="cartSubtotal">₹0.00</span>
+      </div>
+      <div class="cart-tax-note">Taxes and express shipping calculated at checkout</div>
+      <button type="button" class="btn btn-primary cart-checkout-btn" onclick="window.initiateCheckout()">
+        PROCEED TO CHECKOUT
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================================================
+       PRODUCT QUICK VIEW MODAL
+       ================================================== -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="soul-modal quick-view-modal" id="quickViewModal">
+    <button type="button" class="modal-close-btn" id="quickViewClose" aria-label="Close product view">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div id="quickViewContent">
+      <!-- Injected dynamically via app.js -->
+    </div>
+  </div>
+
+  <!-- ==================================================
+       SIZE GUIDE MODAL
+       ================================================== -->
+  <div class="soul-modal size-guide-modal" id="sizeGuideModal">
+    <button type="button" class="modal-close-btn" id="sizeGuideClose" aria-label="Close size guide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="size-guide-header">
+      <div class="eyebrow">&mdash; PRECISION FIT</div>
+      <h3 class="size-guide-title">SIZE SPECIFICATION GUIDE</h3>
+      <p style="font-size: 0.82rem; color: var(--text-muted);">Measurements for our signature Japanese boxy streetwear &amp; regular cuts.</p>
+    </div>
+
+    <div class="unit-toggle-bar">
+      <button type="button" class="unit-toggle-btn active" data-unit="in">INCHES</button>
+      <button type="button" class="unit-toggle-btn" data-unit="cm">CENTIMETERS</button>
+    </div>
+
+    <div class="size-table-wrapper">
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>SIZE</th>
+            <th>CHEST</th>
+            <th>LENGTH</th>
+            <th>SHOULDER</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>S</strong></td>
+            <td><span class="measure-val" data-in="42&quot;" data-cm="107 cm">42&quot;</span></td>
+            <td><span class="measure-val" data-in="28&quot;" data-cm="71 cm">28&quot;</span></td>
+            <td><span class="measure-val" data-in="20.5&quot;" data-cm="52 cm">20.5&quot;</span></td>
+          </tr>
+          <tr>
+            <td><strong>M</strong></td>
+            <td><span class="measure-val" data-in="44&quot;" data-cm="112 cm">44&quot;</span></td>
+            <td><span class="measure-val" data-in="29&quot;" data-cm="74 cm">29&quot;</span></td>
+            <td><span class="measure-val" data-in="21.5&quot;" data-cm="55 cm">21.5&quot;</span></td>
+          </tr>
+          <tr>
+            <td><strong>L</strong></td>
+            <td><span class="measure-val" data-in="46&quot;" data-cm="117 cm">46&quot;</span></td>
+            <td><span class="measure-val" data-in="30&quot;" data-cm="76 cm">30&quot;</span></td>
+            <td><span class="measure-val" data-in="22.5&quot;" data-cm="57 cm">22.5&quot;</span></td>
+          </tr>
+          <tr>
+            <td><strong>XL</strong></td>
+            <td><span class="measure-val" data-in="48&quot;" data-cm="122 cm">48&quot;</span></td>
+            <td><span class="measure-val" data-in="31&quot;" data-cm="79 cm">31&quot;</span></td>
+            <td><span class="measure-val" data-in="23.5&quot;" data-cm="60 cm">23.5&quot;</span></td>
+          </tr>
+          <tr>
+            <td><strong>XXL</strong></td>
+            <td><span class="measure-val" data-in="50&quot;" data-cm="127 cm">50&quot;</span></td>
+            <td><span class="measure-val" data-in="32&quot;" data-cm="81 cm">32&quot;</span></td>
+            <td><span class="measure-val" data-in="24.5&quot;" data-cm="62 cm">24.5&quot;</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="size-guide-note">
+      * All measurements represent garment dimensions. We recommend choosing your normal size for an oversized drop-shoulder fit, or sizing down for a regular tailored fit.
+    </div>
+  </div>
+
+  <!-- Toast Notification Feedback Popup -->
+  <div class="soul-toast" id="soulToast"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/particles.js"></script>
+  <script src="assets/js/app.js"></script>
+
+  <!-- Global Filter & Checkout Helpers -->
+  <script>
+    window.filterShopCategory = function(cat) {
+      const btn = document.querySelector(`.shop-filter-btn[data-filter="${cat}"]`);
+      if (btn) btn.click();
+    };
+
+    window.filterShopCollection = function(coll) {
+      const shopSec = document.getElementById("shop");
+      if (shopSec) shopSec.scrollIntoView({ behavior: "smooth" });
+      const grid = document.getElementById("shopProductGrid");
+      if (!grid) return;
+      const filtered = SOUL_PRODUCTS.filter(p => p.collection.toUpperCase() === coll.toUpperCase());
+      if (filtered.length > 0) {
+        document.querySelectorAll(".shop-filter-btn").forEach(b => b.classList.remove("active"));
+        grid.innerHTML = filtered.map(product => `
+          <div class="product-card" data-product-id="${product.id}">
+            <div class="product-card-image-wrap">
+              <img src="${product.image}" alt="${product.name}" loading="lazy" />
+              ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ""}
+              <button class="product-wishlist-btn ${window.soulCart && window.soulCart.isWishlisted(product.id) ? "active" : ""}" data-wishlist-id="${product.id}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </button>
+              <div class="product-card-hover-actions">
+                <button class="btn-quick-add" onclick="window.quickAddToCart('${product.id}')">QUICK ADD</button>
+                <button class="btn-quick-view" onclick="window.openQuickView('${product.id}')">VIEW DETAILS</button>
+              </div>
+            </div>
+            <div class="product-card-info" onclick="window.openQuickView('${product.id}')">
+              <div class="product-card-category">${product.categoryLabel}</div>
+              <h3 class="product-card-title">${product.name}</h3>
+              <div class="product-card-price-row">
+                <span class="product-card-price">${formatCurrency(product.price)}</span>
+                ${product.originalPrice ? `<span class="product-card-orig-price">${formatCurrency(product.originalPrice)}</span>` : ""}
+              </div>
+            </div>
+          </div>
+        `).join("");
+      }
+    };
+
+    window.initiateCheckout = function() {
+      if (!window.soulCart || window.soulCart.items.length === 0) return;
+      window.soulCart.showToast("Preparing secure checkout for " + window.soulCart.getTotalCount() + " items...");
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# SQLite WAL & Temporary Files
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Node & Package Managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Deployment & Vercel Caches
+.vercel
+.netlify
+
+# OS & IDE Metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local temporary audit screen captures (keeps assets/ directory intact)
+/bottom_site_view.png
+/footer_check.png
+/full_page.png
+/full_site_view.png
+/hero_test.png
+/mobile_test.png
+/mobile_test_fixed.png
+/mobile_view.png
+/screen.png

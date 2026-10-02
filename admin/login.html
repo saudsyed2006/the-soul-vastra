@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE SOUL VASTRA &bull; Owner Portal</title>
+  <link rel="icon" type="image/png" href="/assets/images/katana-sliced-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/admin-static/admin.css" />
+</head>
+<body class="login-body">
+
+  <div class="login-card-container">
+    <div class="login-brand">
+      <div class="brand-crest">
+        <img src="/assets/images/katana-sliced-logo.png" alt="The Soul Vastra Katana" />
+      </div>
+      <h1 class="brand-title">THE SOUL VASTRA</h1>
+      <p class="brand-sub">OWNER AUTHENTICATION</p>
+    </div>
+
+    <div class="login-card">
+      <div id="loginAlert" class="alert-box error" style="display: none;"></div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="loginEmail" class="form-label">EMAIL ADDRESS</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <input type="email" id="loginEmail" class="form-input" placeholder="owner@thesoulvastra.com" required autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="loginPassword" class="form-label">PASSWORD</label>
+            <button type="button" class="btn-forgot-link" id="forgotPwdBtn">Forgot Password?</button>
+          </div>
+          <div class="input-wrapper">
+            <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <input type="password" id="loginPassword" class="form-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required autocomplete="current-password" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login" id="submitLoginBtn">
+          <span>ENTER DASHBOARD</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <a href="/" class="back-to-store-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to Public Website
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal-backdrop" id="forgotModal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">PASSWORD RECOVERY</h3>
+        <button type="button" class="modal-close" id="closeForgotModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">Enter your owner email address. If registered, secure recovery instructions will be dispatched to your server logs / mailbox.</p>
+        <div id="forgotAlert" class="alert-box success" style="display: none;"></div>
+        <form id="forgotForm">
+          <div class="form-group">
+            <label class="form-label">EMAIL ADDRESS</label>
+            <input type="email" id="forgotEmail" class="form-input" placeholder="owner@thesoulvastra.com" required />
+          </div>
+          <button type="submit" class="btn-login" style="margin-top: 1rem;">SEND RESET LINK</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Login Submission
+    const loginForm = document.getElementById("loginForm");
+    const loginAlert = document.getElementById("loginAlert");
+    const submitBtn = document.getElementById("submitLoginBtn");
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      loginAlert.style.display = "none";
+      submitBtn.disabled = true;
+      submitBtn.querySelector("span").textContent = "AUTHENTICATING...";
+
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value;
+
+      try {
+        const res = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          if (data.user && data.user.role === "owner") {
+            window.location.href = "/admin";
+          } else {
+            loginAlert.textContent = "Access Denied: Account is not configured with owner privileges.";
+            loginAlert.style.display = "block";
+            submitBtn.disabled = false;
+            submitBtn.querySelector("span").textContent = "ENTER DASHBOARD";
+          }
+        } else {
+          loginAlert.textContent = data.error || "Authentication failed. Verify credentials.";
+          loginAlert.style.display = "block";
+          submitBtn.disabled = false;
+          submitBtn.querySelector("span").textContent = "ENTER DASHBOARD";
+        }
+      } catch (err) {
+        loginAlert.textContent = "Network communication error. Server is unreachable.";
+        loginAlert.style.display = "block";
+        submitBtn.disabled = false;
+        submitBtn.querySelector("span").textContent = "ENTER DASHBOARD";
+      }
+    });
+
+    // Forgot Password Modal
+    const forgotBtn = document.getElementById("forgotPwdBtn");
+    const forgotModal = document.getElementById("forgotModal");
+    const closeForgot = document.getElementById("closeForgotModal");
+    const forgotForm = document.getElementById("forgotForm");
+    const forgotAlert = document.getElementById("forgotAlert");
+
+    forgotBtn.addEventListener("click", () => forgotModal.style.display = "flex");
+    closeForgot.addEventListener("click", () => forgotModal.style.display = "none");
+    forgotForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("forgotEmail").value;
+      const res = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      forgotAlert.textContent = data.message || "Recovery dispatch initiated.";
+      forgotAlert.style.display = "block";
+      setTimeout(() => { forgotModal.style.display = "none"; }, 3000);
+    });
+  </script>
+</body>
+</html>
