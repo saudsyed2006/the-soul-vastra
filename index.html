@@ -13,6 +13,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link rel="stylesheet" href="assets/css/auth.css" />
 </head>
 <body>
 
@@ -41,6 +42,9 @@
 
       <!-- Right: Action Icons (Search, Cart, Hamburger) -->
       <div class="nav-actions">
+        <!-- Visitor Authentication Menu / Profile Dropdown -->
+        <div id="navAuthWrap" class="nav-auth-wrap"></div>
+
         <!-- Cart Toggle Button -->
         <button type="button" class="nav-action-btn cart-toggle-btn" aria-label="Shopping Bag">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -77,6 +81,10 @@
       <li><a href="#story" class="mobile-nav-link">ABOUT</a></li>
       <li><a href="#footer" class="mobile-nav-link">CONTACT</a></li>
     </ul>
+
+    <!-- Mobile Auth Actions -->
+    <div id="mobileAuthWrap" class="mobile-auth-section"></div>
+
     <div class="mobile-nav-footer">
       <p>THE SOUL VASTRA &bull; WEAR YOUR LEGACY</p>
     </div>
@@ -931,6 +939,332 @@
     </div>
   </div>
 
+  <!-- ==================================================
+       AUTHENTICATION & USER PROFILE MODALS
+       ================================================== -->
+  <div class="auth-modal-overlay" id="authModalOverlay" onclick="if (event.target === this) SoulAuth.closeModals()">
+    
+    <!-- 1. LOGIN MODAL -->
+    <div class="auth-modal-box auth-modal-content" id="loginModal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <button type="button" class="auth-modal-close" onclick="SoulAuth.closeModals()" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="auth-modal-header">
+        <div class="auth-samurai-crest">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <h2 class="auth-modal-title" id="loginTitle">ENTER SANCTUARY</h2>
+        <p class="auth-modal-subtitle">Sign in to access your orders and Clan status</p>
+      </div>
+
+      <div class="auth-alert" role="alert"></div>
+
+      <form id="soulLoginForm" novalidate>
+        <div class="auth-form-group">
+          <label class="auth-form-label" for="loginEmail">Email Address</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </span>
+            <input type="email" id="loginEmail" class="auth-input" placeholder="ronin@thesoulvastra.com" required autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label class="auth-form-label" for="loginPassword">Password</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            <input type="password" id="loginPassword" class="auth-input" placeholder="••••••••••••" required autocomplete="current-password" />
+            <button type="button" class="auth-pwd-toggle" onclick="SoulAuth.togglePasswordVisibility('loginPassword', this)" aria-label="Show Password">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="auth-form-options">
+          <label class="auth-checkbox-label">
+            <input type="checkbox" id="loginRemember" checked />
+            <span>Remember me (30 days)</span>
+          </label>
+          <a href="javascript:void(0)" class="auth-link" onclick="SoulAuth.openModal('forgotPasswordModal')">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="auth-submit-btn" id="loginSubmitBtn">
+          <span class="auth-btn-spinner"></span>
+          <span>SIGN IN</span>
+        </button>
+      </form>
+
+      <div class="auth-modal-footer">
+        New to The Soul Vastra?
+        <a href="javascript:void(0)" onclick="SoulAuth.openModal('registerModal')">Join the Clan</a>
+      </div>
+    </div>
+
+    <!-- 2. REGISTER / SIGN UP MODAL -->
+    <div class="auth-modal-box auth-modal-content" id="registerModal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+      <button type="button" class="auth-modal-close" onclick="SoulAuth.closeModals()" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="auth-modal-header">
+        <div class="auth-samurai-crest">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <h2 class="auth-modal-title" id="registerTitle">FORGE YOUR LEGACY</h2>
+        <p class="auth-modal-subtitle">Create an account for early drops and exclusive Ronin rewards</p>
+      </div>
+
+      <div class="auth-alert" role="alert"></div>
+
+      <form id="soulRegisterForm" novalidate>
+        <div class="auth-form-group">
+          <label class="auth-form-label" for="regName">Full Name</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            <input type="text" id="regName" class="auth-input" placeholder="Miyamoto Musashi" required autocomplete="name" />
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label class="auth-form-label" for="regEmail">Email Address</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </span>
+            <input type="email" id="regEmail" class="auth-input" placeholder="ronin@thesoulvastra.com" required autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label class="auth-form-label" for="regPassword">Create Password</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            <input type="password" id="regPassword" class="auth-input" placeholder="Min. 8 characters" required autocomplete="new-password" />
+            <button type="button" class="auth-pwd-toggle" onclick="SoulAuth.togglePasswordVisibility('regPassword', this)" aria-label="Show Password">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <!-- Password Strength Indicator -->
+          <div class="pwd-strength-container" id="regPwdStrength">
+            <div class="pwd-strength-bars">
+              <div class="pwd-bar"></div>
+              <div class="pwd-bar"></div>
+              <div class="pwd-bar"></div>
+              <div class="pwd-bar"></div>
+            </div>
+            <div class="pwd-strength-text">
+              <span>Security Strength:</span>
+              <span class="pwd-strength-label" id="regStrengthLabel">None</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label class="auth-form-label" for="regConfirmPassword">Confirm Password</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <input type="password" id="regConfirmPassword" class="auth-input" placeholder="Re-type password" required autocomplete="new-password" />
+            <button type="button" class="auth-pwd-toggle" onclick="SoulAuth.togglePasswordVisibility('regConfirmPassword', this)" aria-label="Show Password">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="auth-form-options">
+          <label class="auth-checkbox-label">
+            <input type="checkbox" id="regTerms" required />
+            <span>I accept the <a href="javascript:void(0)" onclick="alert('Terms of Service: By joining The Soul Vastra clan, you agree to authentic apparel purchases and respectful community conduct.')">Terms & Conditions</a></span>
+          </label>
+        </div>
+
+        <button type="submit" class="auth-submit-btn" id="regSubmitBtn">
+          <span class="auth-btn-spinner"></span>
+          <span>CREATE ACCOUNT</span>
+        </button>
+      </form>
+
+      <div class="auth-modal-footer">
+        Already have an account?
+        <a href="javascript:void(0)" onclick="SoulAuth.openModal('loginModal')">Sign In</a>
+      </div>
+    </div>
+
+    <!-- 3. FORGOT PASSWORD MODAL -->
+    <div class="auth-modal-box auth-modal-content" id="forgotPasswordModal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="forgotTitle">
+      <button type="button" class="auth-modal-close" onclick="SoulAuth.closeModals()" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="auth-modal-header">
+        <div class="auth-samurai-crest">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </div>
+        <h2 class="auth-modal-title" id="forgotTitle">RECOVER ACCESS</h2>
+        <p class="auth-modal-subtitle">Enter your email and we'll dispatch password reset guidance</p>
+      </div>
+
+      <div class="auth-alert" role="alert"></div>
+
+      <form id="soulForgotForm" novalidate>
+        <div class="auth-form-group">
+          <label class="auth-form-label" for="forgotEmail">Email Address</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </span>
+            <input type="email" id="forgotEmail" class="auth-input" placeholder="ronin@thesoulvastra.com" required autocomplete="email" />
+          </div>
+        </div>
+
+        <button type="submit" class="auth-submit-btn" id="forgotSubmitBtn">
+          <span class="auth-btn-spinner"></span>
+          <span>DISPATCH RESET INSTRUCTIONS</span>
+        </button>
+      </form>
+
+      <div class="auth-modal-footer">
+        Back to
+        <a href="javascript:void(0)" onclick="SoulAuth.openModal('loginModal')">Sign In</a>
+      </div>
+    </div>
+
+    <!-- 4. ACCOUNT & PROFILE DASHBOARD MODAL -->
+    <div class="auth-modal-box account-modal-box auth-modal-content" id="accountModal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+      <button type="button" class="auth-modal-close" onclick="SoulAuth.closeModals()" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="auth-modal-header" style="text-align:left;margin-bottom:1.25rem;">
+        <h2 class="auth-modal-title" id="accountTitle" style="font-size:1.4rem;">RONIN SANCTUARY</h2>
+        <p class="auth-modal-subtitle">Manage your personal credentials, order lineage, and clan status</p>
+      </div>
+
+      <div class="auth-alert" role="alert"></div>
+
+      <!-- Account Navigation Tabs -->
+      <div class="account-tabs">
+        <button type="button" class="account-tab-btn active" data-tab="profile" onclick="SoulAuth.switchAccountTab('profile')">PROFILE SETTINGS</button>
+        <button type="button" class="account-tab-btn" data-tab="dashboard" onclick="SoulAuth.switchAccountTab('dashboard')">RONIN DASHBOARD</button>
+      </div>
+
+      <!-- Tab 1: Profile Settings -->
+      <div class="account-tab-pane active" id="tab-profile">
+        <form id="soulProfileForm" novalidate>
+          <div class="auth-form-group">
+            <label class="auth-form-label" for="profileName">Full Name</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
+              <input type="text" id="profileName" class="auth-input" required />
+            </div>
+          </div>
+
+          <div class="auth-form-group">
+            <label class="auth-form-label" for="profileEmail">Email (Non-changeable)</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </span>
+              <input type="email" id="profileEmail" class="auth-input" disabled style="opacity:0.6;cursor:not-allowed;" />
+            </div>
+          </div>
+
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1.25rem;">
+            Clan Member Since: <strong id="profileCreatedDate" style="color:#ffffff;">-</strong>
+          </div>
+
+          <button type="submit" class="auth-submit-btn" id="profileSubmitBtn">
+            <span class="auth-btn-spinner"></span>
+            <span>SAVE PROFILE CHANGES</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Tab 2: Dashboard & Orders -->
+      <div class="account-tab-pane" id="tab-dashboard">
+        <div class="ronin-tier-card">
+          <div class="ronin-tier-info">
+            <h4 id="dashTierTitle">VIP Ronin Member</h4>
+            <p>Exclusive access to private releases and 10% clan discount</p>
+          </div>
+          <div class="ronin-tier-badge" id="dashTierBadge">DISCIPLINE TIER I</div>
+        </div>
+
+        <h3 style="font-family:var(--font-serif);font-size:1rem;letter-spacing:1px;margin-bottom:0.75rem;color:#ffffff;">RECENT ORDERS</h3>
+        <div id="dashOrdersList">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <!-- Toast Notification Feedback Popup -->
   <div class="soul-toast" id="soulToast"></div>
 
@@ -939,6 +1273,7 @@
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/particles.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
 
   <!-- Global Filter & Checkout Helpers -->
   <script>

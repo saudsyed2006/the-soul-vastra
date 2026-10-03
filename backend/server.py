@@ -233,6 +233,10 @@ async def auth_login(request: Request):
     user_agent = request.headers.get("User-Agent", "")
     token = create_session(user["id"], ip_address=ip, user_agent=user_agent)
 
+    # Check remember_me
+    remember_me = bool(data.get("remember_me"))
+    cookie_max_age = 2592000 if remember_me else 86400  # 30 days vs 24 hours
+
     # Record login audit
     record_audit_log(
         user_id=user["id"],
@@ -260,12 +264,184 @@ async def auth_login(request: Request):
     response.set_cookie(
         key="soul_session",
         value=token,
-        max_age=86400,
+        max_age=cookie_max_age,
         httponly=True,
         samesite="lax",
         path="/"
     )
     return response
+
+async def auth_register(request: Request):
+    """
+    Registers a new website customer.
+    Validates name, email format, password strength, confirmation, and terms.
+    Enforces duplicate-email prevention (case-insensitive).
+    Hashes password with PBKDF2-HMAC-SHA256 (200,000 iterations + 16-byte random salt).
+    Automatically creates a secure session and logs the user in.
+    """
+    ip = get_client_ip(request)
+    try:
+        data = await request.json()
+    except Exception:
+        return json_err("Invalid JSON request body", status_code=400)
+
+    name = (data.get("name") or "").strip()
+    email = (data.get("email") or "").strip().lower()
+    password = data.get("password") or ""
+    confirm_password = data.get("confirm_password") or ""
+    terms = data.get("terms")
+
+    if not name or len(name) < 2:
+        return json_err("Full name is required (at least 2 characters).", status_code=400)
+
+    import re
+    email_regex = r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
+    if not email or not re.match(email_regex, email):
+        return json_err("Please enter a valid email address.", status_code=400)
+
+    if not password or len(password) < 8:
+        return json_err("Password must be at least 8 characters long.", status_code=400)
+
+    if password != confirm_password:
+        return json_err("Passwords do not match.", status_code=400)
+
+    if not terms:
+        return json_err("You must agree to the Terms & Conditions to register.", status_code=400)
+
+    # Check for duplicate email (case-insensitive)
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id FROM users WHERE email = ? COLLATE NOCASE", (email,))
+    existing = cursor.fetchone()
+
+    if existing:
+        conn.close()
+        return json_err("An account with this email address already exists. Please log in.", status_code=409)
+
+    user_id = f"usr_cust_{uuid.uuid4().hex[:12]}"
+    pwd_hash, salt = hash_password(password)
+    now = datetime.now(timezone.utc).isoformat()
+
+    with conn:
+        conn.execute("""
+            INSERT INTO users (id, email, password_hash, salt, name, role, created_at, last_login)
+            VALUES (?, ?, ?, ?, ?, 'customer', ?, ?)
+        """, (user_id, email, pwd_hash, salt, name, now, now))
+    conn.close()
+
+    # Automatically create session and log customer in
+    user_agent = request.headers.get("User-Agent", "")
+    token = create_session(user_id, ip_address=ip, user_agent=user_agent)
+
+    record_audit_log(
+        user_id=user_id,
+        user_email=email,
+        action="USER_REGISTERED",
+        object_type="user",
+        object_id=user_id,
+        new_value={"name": name, "role": "customer"},
+        ip_address=ip
+    )
+
+    response = JSONResponse({
+        "success": True,
+        "message": "Account created successfully! Welcome to THE SOUL VASTRA.",
+        "user": {
+            "id": user_id,
+            "email": email,
+            "name": name,
+            "role": "customer"
+        },
+        "token": token
+    })
+
+    # Set secure HTTP-only cookie for 30 days
+    response.set_cookie(
+        key="soul_session",
+        value=token,
+        max_age=2592000,
+        httponly=True,
+        samesite="lax",
+        path="/"
+    )
+    return response
+
+async def user_get_profile(request: Request):
+    user = request.state.user
+    if not user:
+        return json_err("Authentication required.", status_code=401)
+
+    return json_ok(user={
+        "id": user["id"],
+        "email": user["email"],
+        "name": user["name"],
+        "role": user["role"],
+        "created_at": user.get("created_at"),
+        "last_login": user.get("last_login")
+    })
+
+async def user_update_profile(request: Request):
+    user = request.state.user
+    if not user:
+        return json_err("Authentication required.", status_code=401)
+
+    try:
+        data = await request.json()
+    except Exception:
+        return json_err("Invalid JSON request body", status_code=400)
+
+    name = (data.get("name") or "").strip()
+    if not name or len(name) < 2:
+        return json_err("Full name is required (at least 2 characters).", status_code=400)
+
+    conn = get_db_connection()
+    with conn:
+        conn.execute("UPDATE users SET name = ? WHERE id = ?", (name, user["id"]))
+    conn.close()
+
+    record_audit_log(
+        user_id=user["id"],
+        user_email=user["email"],
+        action="PROFILE_UPDATED",
+        object_type="user",
+        object_id=user["id"],
+        new_value={"name": name},
+        ip_address=get_client_ip(request)
+    )
+
+    return json_ok(message="Profile updated successfully.", user={
+        "id": user["id"],
+        "email": user["email"],
+        "name": name,
+        "role": user["role"]
+    })
+
+async def user_get_dashboard(request: Request):
+    user = request.state.user
+    if not user:
+        return json_err("Authentication required.", status_code=401)
+
+    return json_ok(dashboard={
+        "user": {
+            "id": user["id"],
+            "name": user["name"],
+            "email": user["email"],
+            "role": user["role"],
+            "created_at": user.get("created_at"),
+            "last_login": user.get("last_login")
+        },
+        "membership_tier": "VIP Ronin Member" if user["role"] == "customer" else "Website Owner",
+        "tier_badge": "DISCIPLINE TIER I" if user["role"] == "customer" else "COMMANDER TIER",
+        "orders": [
+            {
+                "id": "ORD-2026-0891",
+                "date": "2026-03-28",
+                "status": "Delivered",
+                "items": ["DAWN OF DISCIPLINE (M)"],
+                "total": "₹1,999.00"
+            }
+        ] if user["role"] == "customer" else []
+    })
 
 async def auth_logout(request: Request):
     token = request.state.session_token
@@ -1005,6 +1181,10 @@ routes = [
     Route("/", serve_public_home, methods=["GET"]),
     Route("/index.html", serve_public_home, methods=["GET"]),
     Route("/shop", serve_public_home, methods=["GET"]),
+    Route("/login", serve_public_home, methods=["GET"]),
+    Route("/register", serve_public_home, methods=["GET"]),
+    Route("/dashboard", serve_public_home, methods=["GET"]),
+    Route("/profile", serve_public_home, methods=["GET"]),
 
     # Public Catalog APIs
     Route("/api/products", public_get_products, methods=["GET"]),
@@ -1014,11 +1194,17 @@ routes = [
     Route("/api/homepage", public_get_homepage, methods=["GET"]),
 
     # Auth APIs
+    Route("/api/auth/register", auth_register, methods=["POST"]),
     Route("/api/auth/login", auth_login, methods=["POST"]),
     Route("/api/auth/logout", auth_logout, methods=["POST"]),
     Route("/api/auth/me", auth_get_me, methods=["GET"]),
     Route("/api/auth/forgot-password", auth_forgot_password, methods=["POST"]),
     Route("/api/auth/change-password", auth_change_password, methods=["POST"]),
+
+    # Customer User APIs
+    Route("/api/user/profile", user_get_profile, methods=["GET"]),
+    Route("/api/user/profile", user_update_profile, methods=["PUT"]),
+    Route("/api/user/dashboard", user_get_dashboard, methods=["GET"]),
 
     # Admin Protected APIs (Strict Owner-Only Enforcement)
     Route("/api/admin/dashboard-stats", admin_get_dashboard_stats, methods=["GET"]),
